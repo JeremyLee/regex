@@ -48,12 +48,6 @@ namespace CSharpTemplate {
         set;
       }
 
-      [Option("b", "bool", HelpText = "on|off switch here")]
-      public bool BooleanValue {
-        get;
-        set;
-      }
-
       [HelpOption]
       public string GetUsage() {
 
@@ -65,7 +59,7 @@ namespace CSharpTemplate {
         };
         this.HandleParsingErrorsInHelp(help);
         help.AddPreOptionsLine("This software is licensed under the MIT License.");
-        help.AddPreOptionsLine("Usage: regex -tSomeText --numeric 2012 -b");
+        help.AddPreOptionsLine(@"Usage: regex -rx""Regex"" -rp""Replacement Pattern""");
         help.AddOptions(this);
 
         return help;
@@ -85,9 +79,7 @@ namespace CSharpTemplate {
     static void Main(string[] args) {
       var options = new Options();
       if (CommandLineParser.Default.ParseArguments(args, options)) {
-        Console.WriteLine("t|ext: " + options.TextValue);
-        Console.WriteLine("n|umeric: " + options.NumericValue.ToString());
-        Console.WriteLine("b|ool: " + options.BooleanValue.ToString().ToLower());
+
       }
     }
   }
